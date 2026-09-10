@@ -12,8 +12,6 @@ finish-args:
   - --socket=wayland
   - --socket=fallback-x11
   - --device=dri
-  # Microphone, for Lumo's voice input. Drop this line if that feature goes unused.
-  - --socket=pulseaudio
   - --talk-name=org.freedesktop.Notifications
   # System tray icon (StatusNotifierItem protocol); the BaseApp already bundles libappindicator.
   - --talk-name=org.kde.StatusNotifierWatcher

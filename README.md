@@ -65,6 +65,14 @@ npm start
 - **Global shortcut caveat**: Electron's `globalShortcut` (bound to Ctrl+Shift+L) only works reliably on X11. Under Wayland, use the `--toggle` command above with a compositor-level custom shortcut instead — see Features above.
 - **Profile location**: cookies, session, and window state live in `~/.var/app/io.github.davethegamedev.LumoDesktop/config/Lumo Desktop/` when running as a Flatpak, and in `~/.config/Lumo Desktop/` when run via `npm start`. Deleting that directory logs you out and resets the app.
 - **Offline handling**: if Lumo can't be reached, the window shows a simple "Can't reach Lumo" page with a Retry link.
+- **No audio/microphone by default**: the sandbox ships without `--socket=pulseaudio`, so the app has no audio or microphone access out of the box. If you want to use voice input in Lumo, grant it to the installed app without rebuilding:
+  ```
+  flatpak override --user --socket=pulseaudio io.github.davethegamedev.LumoDesktop
+  ```
+  and revoke it again with:
+  ```
+  flatpak override --user --nosocket=pulseaudio io.github.davethegamedev.LumoDesktop
+  ```
 - **Trademark note**: "Lumo" and "Proton" are trademarks of Proton AG. This project is for personal use; it would need a distinct name and a different app ID before any public or Flathub distribution.
 
 ## License

@@ -39,12 +39,15 @@ else
 fi
 
 echo "==> Packaging the Electron app with @electron/packager"
+# Ignore flatpak-builder output and repo-only files so they aren't copied into the
+# packaged app (otherwise the second build fails and the app ships junk).
 npx @electron/packager . lumo-desktop \
   --platform=linux \
   --arch=x64 \
   --out=dist \
   --overwrite \
-  --icon=assets/icon.png
+  --icon=assets/icon.png \
+  --ignore='^/(\.flatpak-builder|build-dir|repo|dist|flatpak|scripts|\.git.*|RESEARCH\.md|.*\.flatpak)($|/)'
 
 if [ ! -x "dist/lumo-desktop-linux-x64/lumo-desktop" ]; then
   echo "error: expected packager output at dist/lumo-desktop-linux-x64/lumo-desktop not found" >&2
