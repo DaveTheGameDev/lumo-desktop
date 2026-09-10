@@ -6,8 +6,10 @@ An unofficial Linux desktop wrapper around [Proton's Lumo web app](https://lumo.
 
 > **Unofficial.** This project is not affiliated with, endorsed by, or supported by Proton AG.
 > "Lumo" and "Proton" are trademarks of Proton AG, used here only to describe what the app
-> connects to. The app loads Proton's web app unmodified — no reimplementation, no scraping. If
-> Proton asks, this project will rename.
+> connects to. The app loads Proton's web app unmodified — no reimplementation, no scraping. The
+> app icon is Proton's own Lumo mascot artwork, reproduced from lumo.proton.me so the app is
+> recognisable next to the web app, and it remains Proton AG's property. If Proton asks, this
+> project will rename and change its icon.
 
 <!-- TODO: add docs/screenshot.png and reference it here -->
 
@@ -267,9 +269,14 @@ Issues and pull requests are welcome. Please keep the wrapper thin (see
 GPL-3.0-or-later. Copyright (C) 2026 DaveTheGameDev. See [LICENSE](LICENSE) for the full text.
 Electron and Chromium ship their own licenses inside the bundle.
 
+The app icon (`assets/icon.svg` and `assets/icon.png`) is Proton AG's Lumo mascot artwork,
+reproduced from the SVG favicon served by lumo.proton.me. It is Proton's property and is **not**
+covered by the GPL. Anyone forking this project for something other than a Lumo client should
+replace it.
+
 ## Acknowledgements
 
-- [Proton](https://proton.me) for Lumo, the web app this project wraps.
+- [Proton](https://proton.me) for Lumo, the web app this project wraps, and for the Lumo mascot artwork used as the app icon.
 - [Electron](https://www.electronjs.org/).
 - [Flathub](https://flathub.org)'s Electron2 BaseApp and [zypak](https://github.com/refi64/zypak), which make sandboxed Electron on Flatpak possible.
 - [kenvandine/proton-lumo-ai](https://github.com/kenvandine/proton-lumo-ai), studied as prior art (a Snap-based Electron wrapper); no code was copied.
