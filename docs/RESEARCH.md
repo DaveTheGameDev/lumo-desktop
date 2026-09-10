@@ -3,11 +3,12 @@
 **Researched:** 2026-09-10 · **Question:** Is it possible and practical to package Proton's Lumo AI
 assistant as a Flatpak Linux desktop app?
 
-**Short answer: Yes.** A Flatpak for personal/self-distributed use is a day of work and there is
+**Short answer: Yes.** A self-distributed Flatpak is a day of work and there is
 already a working Electron wrapper to learn from. Getting it onto **Flathub** is the hard part, and it
 fails on a *policy* rule, not a technical one.
 
-> Read this first if you're picking the work back up: jump to
+> This is the feasibility research the project started from, kept as background for contributors;
+> the README describes the app as it exists today. For the conclusions, jump to
 > [§7 Concrete plan](#7-concrete-plan) and [§8 Risks](#8-risks-ranked). Everything above those is
 > the evidence behind them.
 
@@ -122,10 +123,10 @@ features would need the GlobalShortcuts portal.
 
 *(This section was verified directly against Flathub docs; the automated research pass got it wrong.)*
 
-### For personal / self-distributed use: **no policy applies at all.**
+### For self-distribution outside Flathub: **no policy applies at all.**
 Build locally, ship a `.flatpak` bundle on GitHub Releases or your own repo, `flatpak install --user`.
-This is 100% of what you actually asked for ("I don't want to care about different distros"). **Do
-this first.**
+That alone delivers the project's core goal — one package that runs on any distro — so it comes
+**first**.
 
 ### For Flathub submission — [requirements](https://docs.flathub.org/docs/for-app-authors/requirements), quoted verbatim:
 
@@ -142,7 +143,7 @@ Other rules that bind:
 > "the domain must be directly related to the project or the application being submitted and the
 > author or the developer or the project **must have control over the domain**"
 
-→ App ID must be `io.github.<you>.<Name>`. **Never `me.proton.*` or anything Proton-derived.**
+→ App ID must be `io.github.<owner>.<Name>`. **Never `me.proton.*` or anything Proton-derived.**
 
 > "The application name and icon as presented to the Flathub website and to users must be distinct
 > and must not violate any trademarks."
@@ -213,20 +214,20 @@ Three separate things, do not conflate them:
    - Lumora: self-describes as "unofficial"
    - snapcraft.io/proton-lumo-ai: *"unofficial… not affiliated with Proton AG"*
 
-   Practically negligible for personal use. Matters if you publish. **Read the ToS before submitting
+   Practically negligible for private use. Matters for public distribution. **Read the ToS before submitting
    anything public.**
 
 ---
 
 ## 7. Concrete plan
 
-**Phase 1 — get it working for yourself (~1 day)**
-1. Start a **new repo from scratch** (decided 2026-09-10). Read
+**Phase 1 — a working self-distributed build (~1 day)**
+1. Start a **new repo from scratch**. Read
    [`kenvandine/proton-lumo-ai`](https://github.com/kenvandine/proton-lumo-ai) as the closest
    reference implementation (Electron + Lumo + GPL-3.0, Snap-only) but don't fork it: it's ~25
    commits of boilerplate, upstream is Snap-focused, and Phase 2 rewrites everything except the
    `loadURL` call anyway. If any of its code is copied, stay GPL-3.0 and credit it.
-2. Write `io.github.<you>.<Name>.yml`: `org.electronjs.Electron2.BaseApp` on
+2. Write `io.github.<owner>.<Name>.yml`: `org.electronjs.Electron2.BaseApp` on
    `org.freedesktop.Platform`, zypak wrapper, finish-args from §5.
 3. `flatpak-builder --user --install`, test the **full path**: login → 2FA → first message →
    file upload → download through the portal → conversation history.
@@ -269,7 +270,7 @@ API.
 - [ ] When do Proton's roadmapped Lumo desktop app and API ship, and on what engine?
 - [ ] Does a webview wrapper survive the **full** Lumo feature set inside a Flatpak sandbox —
       2FA login, file upload, portal downloads, service-worker/offline, voice? **No source tested
-      this.** Test it yourself in Phase 1 step 3.
+      this.** Phase 1 step 3 is where this gets tested.
 - [ ] Is the WebKitGTK WASM assert fixed in current WebKitGTK (>2.50)?
 
 ## 10. Claims that were investigated and REFUTED — do not carry these forward

@@ -2,7 +2,7 @@
 # SPDX-License-Identifier: GPL-3.0-or-later
 # Copyright (C) 2026 DaveTheGameDev
 # Builds Lumo Desktop and packages it as a Flatpak bundle (LumoDesktop.flatpak) for
-# personal/self-distributed installation. Not a Flathub submission workflow.
+# self-distribution, e.g. on GitHub Releases. Not a Flathub submission workflow.
 #
 # Usage: scripts/build-flatpak.sh [--no-bundle]
 #   --no-bundle   build and --user --install the Flatpak but skip creating the .flatpak bundle

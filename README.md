@@ -267,7 +267,8 @@ LUMO_DESKTOP_DEBUG=1 npm start
 
 ## Status & limitations
 
-- Version 0.1.x — a solo, personal project, tested on Fedora / GNOME Wayland only.
+- Version 0.1.x — early days, tested on Fedora / GNOME Wayland only so far. Reports from other
+  distributions and desktops are welcome.
 - Not on Flathub, and not planned unless the app is renamed — Flathub's naming/branding policy
   doesn't allow a Proton-derived name for a third-party wrapper like this.
 - No auto-update mechanism.
