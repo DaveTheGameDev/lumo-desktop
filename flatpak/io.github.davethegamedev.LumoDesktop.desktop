@@ -1,0 +1,16 @@
+[Desktop Entry]
+Name=Lumo Desktop
+Comment=Unofficial desktop app for Proton Lumo
+Exec=lumo-desktop %U
+Icon=io.github.davethegamedev.LumoDesktop
+Terminal=false
+Type=Application
+Categories=Network;Chat;Utility;
+Keywords=lumo;proton;ai;chat;assistant;
+StartupWMClass=lumo-desktop
+StartupNotify=true
+Actions=Toggle;
+
+[Desktop Action Toggle]
+Name=Show / Hide
+Exec=lumo-desktop --toggle

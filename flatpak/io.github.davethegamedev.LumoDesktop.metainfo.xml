@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<component type="desktop-application">
+  <id>io.github.davethegamedev.LumoDesktop</id>
+  <name>Lumo Desktop</name>
+  <summary>Unofficial desktop app for Proton Lumo</summary>
+  <metadata_license>CC0-1.0</metadata_license>
+  <project_license>GPL-3.0-or-later</project_license>
+  <description>
+    <p>
+      Lumo Desktop is an unofficial, community-made desktop shell for Proton's Lumo AI
+      assistant (lumo.proton.me). It is a thin Electron wrapper that loads the official Lumo
+      web app and adds native desktop touches: a system tray icon, a show/hide toggle, native
+      notifications, spellcheck, and portal-based file dialogs. All login, two-factor
+      authentication, and encryption are handled entirely by Proton's own web app running
+      inside the wrapper.
+    </p>
+    <p>
+      This project is not affiliated with, endorsed by, or supported by Proton AG. "Lumo" and
+      "Proton" are trademarks of Proton AG.
+    </p>
+  </description>
+  <launchable type="desktop-id">io.github.davethegamedev.LumoDesktop.desktop</launchable>
+  <url type="homepage">https://github.com/DaveTheGameDev/LumoDesktop</url>
+  <content_rating type="oars-1.1"/>
+  <releases>
+    <release version="0.1.0" date="2026-09-10"/>
+  </releases>
+  <developer id="io.github.davethegamedev">
+    <name>DaveTheGameDev</name>
+  </developer>
+</component>

@@ -1,0 +1,17 @@
+{
+  "name": "lumo-desktop",
+  "productName": "Lumo Desktop",
+  "version": "0.1.0",
+  "description": "Unofficial desktop wrapper for Proton's Lumo web app",
+  "main": "src/main.js",
+  "license": "GPL-3.0",
+  "private": true,
+  "scripts": {
+    "start": "electron .",
+    "package": "electron-packager . lumo-desktop --platform=linux --arch=x64 --out=dist --overwrite --icon=assets/icon.png"
+  },
+  "devDependencies": {
+    "@electron/packager": "^20.0.0",
+    "electron": "^44.0.0"
+  }
+}

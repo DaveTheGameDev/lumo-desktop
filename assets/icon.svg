@@ -1,0 +1,41 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="512" y2="512" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#1CA7A0"/>
+      <stop offset="1" stop-color="#0D7C78"/>
+    </linearGradient>
+    <linearGradient id="spark" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#FFC24B"/>
+      <stop offset="1" stop-color="#F59E0B"/>
+    </linearGradient>
+  </defs>
+
+  <!-- background -->
+  <rect x="0" y="0" width="512" height="512" rx="112" fill="url(#bg)"/>
+
+  <!-- speech bubble -->
+  <path d="
+    M 128 148
+    h 200
+    a 56 56 0 0 1 56 56
+    v 100
+    a 56 56 0 0 1 -56 56
+    h -134
+    l -54 50
+    a 8 8 0 0 1 -13 -6
+    l 2 -60
+    a 56 56 0 0 1 -1 -1
+    v -139
+    a 56 56 0 0 1 56 -56
+    z"
+    fill="#F4FBFA"/>
+
+  <!-- amber glow / spark accent -->
+  <g fill="url(#spark)">
+    <circle cx="372" cy="128" r="30"/>
+    <path d="M 372 40 L 382 92 L 372 108 L 362 92 Z"/>
+    <path d="M 460 128 L 408 118 L 392 128 L 408 138 Z"/>
+    <path d="M 372 216 L 362 164 L 372 148 L 382 164 Z"/>
+    <path d="M 284 128 L 336 138 L 352 128 L 336 118 Z"/>
+  </g>
+</svg>

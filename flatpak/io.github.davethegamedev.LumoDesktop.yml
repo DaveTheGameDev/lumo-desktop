@@ -1,0 +1,60 @@
+id: io.github.davethegamedev.LumoDesktop
+runtime: org.freedesktop.Platform
+runtime-version: '25.08'
+sdk: org.freedesktop.Sdk
+base: org.electronjs.Electron2.BaseApp
+base-version: '25.08'
+command: lumo-desktop
+separate-locales: false
+finish-args:
+  - --share=ipc
+  - --share=network
+  - --socket=wayland
+  - --socket=fallback-x11
+  - --device=dri
+  # Microphone, for Lumo's voice input. Drop this line if that feature goes unused.
+  - --socket=pulseaudio
+  - --talk-name=org.freedesktop.Notifications
+  # System tray icon (StatusNotifierItem protocol); the BaseApp already bundles libappindicator.
+  - --talk-name=org.kde.StatusNotifierWatcher
+  # Cursor themes: without this, cursors render as the ugly X11 default inside the sandbox.
+  # Convention copied from flathub/me.proton.Mail and the flathub/org.flathub.electron-sample-app
+  # tutorial manifest, both of which set this for the same reason.
+  - --env=XCURSOR_PATH=~/.icons:/app/share/icons:/run/host/user-share/icons:/run/host/share/icons
+  # No --filesystem= permissions: file open/save dialogs go through the portals zypak wires up.
+
+modules:
+  - name: lumo-desktop
+    buildsystem: simple
+    build-commands:
+      # Prebuilt on the host with @electron/packager (scripts/build-flatpak.sh) and copied in as
+      # a plain directory -- no flatpak-node-generator, no network access inside the build sandbox.
+      - cp -a app /app/lumo-desktop
+
+      # src/main.js calls app.setDesktopName('io.github.davethegamedev.LumoDesktop.desktop')
+      # explicitly, which is what makes notifications and the Wayland app_id match the desktop
+      # entry -- so patch-electron-desktop-filename isn't needed here (and there's no app.asar to
+      # patch anyway, since the packager runs without --asar).
+
+      # chrome-sandbox ships with the packager output but is inert under zypak, which intercepts
+      # sandboxing via LD_PRELOAD instead -- left as-is, same as upstream Electron Flatpaks.
+
+      - install -Dm755 lumo-desktop.sh /app/bin/lumo-desktop
+      - install -Dm644 io.github.davethegamedev.LumoDesktop.desktop /app/share/applications/io.github.davethegamedev.LumoDesktop.desktop
+      - install -Dm644 io.github.davethegamedev.LumoDesktop.metainfo.xml /app/share/metainfo/io.github.davethegamedev.LumoDesktop.metainfo.xml
+      - install -Dm644 icon.svg /app/share/icons/hicolor/scalable/apps/io.github.davethegamedev.LumoDesktop.svg
+      - install -Dm644 icon.png /app/share/icons/hicolor/512x512/apps/io.github.davethegamedev.LumoDesktop.png
+    sources:
+      - type: dir
+        path: ../dist/lumo-desktop-linux-x64
+        dest: app
+      - type: file
+        path: lumo-desktop.sh
+      - type: file
+        path: io.github.davethegamedev.LumoDesktop.desktop
+      - type: file
+        path: io.github.davethegamedev.LumoDesktop.metainfo.xml
+      - type: file
+        path: ../assets/icon.svg
+      - type: file
+        path: ../assets/icon.png
