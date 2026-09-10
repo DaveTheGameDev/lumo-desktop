@@ -38,20 +38,39 @@ on any Linux distro instead of chasing per-distro builds.
 
 ### From a release
 
-1. Add the Flathub remote if you don't already have it:
-   ```sh
-   flatpak remote-add --if-not-exists flathub https://dl.flathub.org/repo/flathub.flatpakrepo
-   ```
-2. Download `LumoDesktop.flatpak` from the [GitHub Releases page](https://github.com/DaveTheGameDev/lumo-desktop/releases).
-3. Install it:
-   ```sh
-   flatpak install --user LumoDesktop.flatpak
-   ```
-   The runtime (`org.freedesktop.Platform//25.08`) and `org.electronjs.Electron2.BaseApp` are pulled from Flathub automatically.
-4. Launch it from your app grid ("Lumo Desktop") or:
-   ```sh
-   flatpak run io.github.davethegamedev.LumoDesktop
-   ```
+Download `LumoDesktop.flatpak` from the
+[GitHub Releases page](https://github.com/DaveTheGameDev/lumo-desktop/releases), then install it
+either way below. The runtime (`org.freedesktop.Platform//25.08`) and
+`org.electronjs.Electron2.BaseApp` are pulled from Flathub automatically, so the Flathub remote
+has to be configured first. Most distributions ship it enabled; if not, add it with:
+
+```sh
+flatpak remote-add --if-not-exists flathub https://dl.flathub.org/repo/flathub.flatpakrepo
+```
+
+#### With your distribution's software centre
+
+If your desktop has a software installer that handles Flatpak (GNOME Software on Fedora and
+Ubuntu, Discover on KDE, and others), open the downloaded `LumoDesktop.flatpak` with it, for
+example by double-clicking the file, and press **Install**.
+
+If the installer offers a choice between a plain install and one marked **User**, pick **User**.
+It installs for your account only, needs no administrator password, and matches everything else
+in this README.
+
+#### From the command line
+
+```sh
+flatpak install --user LumoDesktop.flatpak
+```
+
+#### Launching
+
+Start it from your app grid ("Lumo Desktop") or with:
+
+```sh
+flatpak run io.github.davethegamedev.LumoDesktop
+```
 
 ### From source
 

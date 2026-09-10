@@ -74,7 +74,7 @@ if [ "$NO_BUNDLE" -eq 1 ]; then
 fi
 
 echo "==> Creating a distributable bundle"
-flatpak build-bundle "$REPO_DIR" "$BUNDLE" "$APP_ID"
+flatpak build-bundle "$REPO_DIR" "$BUNDLE" "$APP_ID" stable
 
 BUNDLE_PATH="$REPO_ROOT/$BUNDLE"
 echo
