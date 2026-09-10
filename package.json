@@ -4,11 +4,19 @@
   "version": "0.1.0",
   "description": "Unofficial desktop wrapper for Proton's Lumo web app",
   "main": "src/main.js",
-  "license": "GPL-3.0",
+  "license": "GPL-3.0-or-later",
   "private": true,
+  "homepage": "https://github.com/DaveTheGameDev/lumo-desktop",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/DaveTheGameDev/lumo-desktop.git"
+  },
+  "bugs": {
+    "url": "https://github.com/DaveTheGameDev/lumo-desktop/issues"
+  },
   "scripts": {
     "start": "electron .",
-    "package": "electron-packager . lumo-desktop --platform=linux --arch=x64 --out=dist --overwrite --icon=assets/icon.png --ignore='^/(\\.flatpak-builder|build-dir|repo|dist|flatpak|scripts|\\.git.*|RESEARCH\\.md|.*\\.flatpak)($|/)'"
+    "package": "electron-packager . lumo-desktop --platform=linux --arch=x64 --out=dist --overwrite --icon=assets/icon.png --ignore='^/(\\.flatpak-builder|build-dir|repo|dist|flatpak|scripts|\\.git.*|docs|.*\\.flatpak)($|/)'"
   },
   "devDependencies": {
     "@electron/packager": "^20.0.0",

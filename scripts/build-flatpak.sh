@@ -1,4 +1,6 @@
 #!/usr/bin/env bash
+# SPDX-License-Identifier: GPL-3.0-or-later
+# Copyright (C) 2026 DaveTheGameDev
 # Builds Lumo Desktop and packages it as a Flatpak bundle (LumoDesktop.flatpak) for
 # personal/self-distributed installation. Not a Flathub submission workflow.
 #
@@ -47,7 +49,7 @@ npx @electron/packager . lumo-desktop \
   --out=dist \
   --overwrite \
   --icon=assets/icon.png \
-  --ignore='^/(\.flatpak-builder|build-dir|repo|dist|flatpak|scripts|\.git.*|RESEARCH\.md|.*\.flatpak)($|/)'
+  --ignore='^/(\.flatpak-builder|build-dir|repo|dist|flatpak|scripts|\.git.*|docs|.*\.flatpak)($|/)'
 
 if [ ! -x "dist/lumo-desktop-linux-x64/lumo-desktop" ]; then
   echo "error: expected packager output at dist/lumo-desktop-linux-x64/lumo-desktop not found" >&2

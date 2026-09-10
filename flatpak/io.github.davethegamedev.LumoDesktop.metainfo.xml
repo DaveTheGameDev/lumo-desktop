@@ -20,7 +20,9 @@
     </p>
   </description>
   <launchable type="desktop-id">io.github.davethegamedev.LumoDesktop.desktop</launchable>
-  <url type="homepage">https://github.com/DaveTheGameDev/LumoDesktop</url>
+  <url type="homepage">https://github.com/DaveTheGameDev/lumo-desktop</url>
+  <url type="bugtracker">https://github.com/DaveTheGameDev/lumo-desktop/issues</url>
+  <url type="vcs-browser">https://github.com/DaveTheGameDev/lumo-desktop</url>
   <content_rating type="oars-1.1"/>
   <releases>
     <release version="0.1.0" date="2026-09-10"/>

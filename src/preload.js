@@ -1,3 +1,6 @@
+// SPDX-License-Identifier: GPL-3.0-or-later
+// Copyright (C) 2026 DaveTheGameDev
+
 // Lumo Desktop — preload script.
 //
 // This file deliberately exposes NOTHING to the page.
