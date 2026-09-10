@@ -193,6 +193,22 @@ Check your network connection and retry.
 reliably on X11. Under Wayland, use the `--toggle` command with a compositor-level custom shortcut
 instead (see [Usage](#usage)).
 
+**The window buttons (minimise / maximise / close) are barely visible, or the title bar doesn't
+match my GTK theme.** GNOME's Wayland compositor doesn't draw window frames, so Chromium draws the
+title bar itself from the GTK theme inside the sandbox — and some themes get their
+Chromium-specific rules wrong (Breeze's dark variant, for one, paints dark buttons on a dark bar).
+The launcher therefore pins the frame to GTK's built-in Adwaita theme, light or dark following
+your system colour scheme at launch; switching light/dark while the app is running takes effect
+after a relaunch. To use your own theme anyway:
+
+```sh
+flatpak override --user --env=GTK_THEME=Breeze:dark io.github.davethegamedev.LumoDesktop
+```
+
+Undo with `flatpak override --user --unset-env=GTK_THEME io.github.davethegamedev.LumoDesktop`.
+When running from source with `npm start`, the pin isn't applied — set `GTK_THEME=Adwaita:dark`
+(or `Adwaita`) in the environment yourself if you hit the same problem.
+
 **I want to fully reset the app.** Delete the profile directory (see
 [Privacy & security](#privacy--security) for the path). This logs you out and clears all local
 state.
@@ -257,6 +273,8 @@ LUMO_DESKTOP_DEBUG=1 npm start
 - No auto-update mechanism.
 - Tray icon requires a GNOME extension (see [Usage](#usage)).
 - The global keyboard shortcut only works on X11; use the `--toggle` command under Wayland.
+- The window frame (title bar and its buttons) always uses GTK's Adwaita theme, in the light or
+  dark variant picked at launch — see [Troubleshooting](#troubleshooting--faq).
 
 ## Contributing
 
