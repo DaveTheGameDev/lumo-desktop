@@ -37,6 +37,9 @@ const DEFAULT_HEIGHT = 800;
 const MIN_SANE_SIZE = 320; // reject obviously broken persisted sizes
 
 const ICON_PATH = path.join(__dirname, '..', 'assets', 'icon.png');
+// The launcher/window icon is the mascot on a white tile, which is unreadable at panel size.
+// The tray gets the bare mascot instead; the tray host scales the pixmap to its own icon size.
+const TRAY_ICON_PATH = path.join(__dirname, '..', 'assets', 'tray.png');
 const PRELOAD_PATH = path.join(__dirname, 'preload.js');
 const STATE_FILE_NAME = 'window-state.json';
 
@@ -484,14 +487,13 @@ function quitApp() {
 // ---------------------------------------------------------------------------
 
 function createTray() {
-  if (!fs.existsSync(ICON_PATH)) {
-    debug('tray icon missing at', ICON_PATH, '- skipping tray');
+  const iconPath = fs.existsSync(TRAY_ICON_PATH) ? TRAY_ICON_PATH : ICON_PATH;
+  if (!fs.existsSync(iconPath)) {
+    debug('tray icon missing at', iconPath, '- skipping tray');
     return;
   }
   try {
-    const image = nativeImage
-      .createFromPath(ICON_PATH)
-      .resize({ width: 24, height: 24 });
+    const image = nativeImage.createFromPath(iconPath);
     tray = new Tray(image);
     tray.setToolTip('Lumo Desktop');
     tray.setContextMenu(

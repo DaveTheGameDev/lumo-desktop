@@ -33,6 +33,19 @@ if [ -z "${GTK_THEME:-}" ]; then
   esac
 fi
 
+# Tray icon:
+#   Chromium publishes the tray icon (StatusNotifierItem) as a PNG in its temp directory and
+#   hands the host only the path. The sandbox's /tmp is private, so the host's tray never finds
+#   the file and shows a placeholder instead. $XDG_RUNTIME_DIR/app/$FLATPAK_ID is mounted at the
+#   same path inside and outside the sandbox, so keep Chromium's temp files there. An explicit
+#   TMPDIR (flatpak override --env=TMPDIR=...) is respected.
+if [ -z "${TMPDIR:-}" ] && [ -n "${XDG_RUNTIME_DIR:-}" ] && [ -n "${FLATPAK_ID:-}" ]; then
+  shared_tmp="$XDG_RUNTIME_DIR/app/$FLATPAK_ID"
+  if mkdir -p "$shared_tmp" 2>/dev/null; then
+    export TMPDIR="$shared_tmp"
+  fi
+fi
+
 # "$@" is forwarded untouched so `flatpak run io.github.davethegamedev.LumoDesktop --toggle`
 # reaches src/main.js.
 exec zypak-wrapper /app/lumo-desktop/lumo-desktop \
