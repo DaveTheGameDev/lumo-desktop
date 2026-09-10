@@ -12,6 +12,9 @@ finish-args:
   - --socket=wayland
   - --socket=fallback-x11
   - --device=dri
+  # Audio and microphone, so Lumo's voice input can work. Revoke it for the
+  # installed app with: flatpak override --user --nosocket=pulseaudio <app id>
+  - --socket=pulseaudio
   - --talk-name=org.freedesktop.Notifications
   # System tray icon (StatusNotifierItem protocol); the BaseApp already bundles libappindicator.
   - --talk-name=org.kde.StatusNotifierWatcher
