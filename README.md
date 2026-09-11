@@ -13,6 +13,31 @@ An unofficial Linux desktop wrapper around [Proton's Lumo web app](https://lumo.
 
 <!-- TODO: add docs/screenshot.png and reference it here -->
 
+## Contents
+
+- [What it is](#what-it-is)
+- [Features](#features)
+- [Install](#install)
+  - [From a release](#from-a-release)
+  - [From source](#from-source)
+- [Uninstall](#uninstall)
+- [Usage](#usage)
+  - [Show/Hide toggle](#showhide-toggle)
+  - [Tray icon](#tray-icon)
+  - [Keyboard shortcuts](#keyboard-shortcuts)
+  - [Where links open](#where-links-open)
+- [Privacy & security](#privacy--security)
+- [Updating](#updating)
+- [Troubleshooting / FAQ](#troubleshooting--faq)
+- [Development](#development)
+  - [Repo layout](#repo-layout)
+  - [Design rules for contributors](#design-rules-for-contributors)
+  - [Releasing](#releasing)
+- [Status & limitations](#status--limitations)
+- [Contributing](#contributing)
+- [License](#license)
+- [Acknowledgements](#acknowledgements)
+
 ## What it is
 
 Lumo Desktop is a thin Electron shell around `lumo.proton.me`. It doesn't reimplement Lumo's API
@@ -91,6 +116,38 @@ scripts/build-flatpak.sh
 This produces `LumoDesktop.flatpak` in the repo root and also installs the app to your user
 Flatpak install. Pass `--no-bundle` to build and install locally without producing the `.flatpak`
 bundle file.
+
+## Uninstall
+
+Remove the app, keeping your login and settings in case you reinstall later:
+
+```sh
+flatpak uninstall --user io.github.davethegamedev.LumoDesktop
+```
+
+Or use your software centre: find "Lumo Desktop" in its installed apps and press **Uninstall**.
+
+To also delete the browser profile (cookies, session, window state), run this instead:
+
+```sh
+flatpak uninstall --user --delete-data io.github.davethegamedev.LumoDesktop
+```
+
+Then clean up anything left behind:
+
+- Any `flatpak override` you set for the app (from [Privacy & security](#privacy--security) or
+  [Troubleshooting](#troubleshooting--faq)):
+  ```sh
+  flatpak override --user --reset io.github.davethegamedev.LumoDesktop
+  ```
+- The keyboard shortcut for the `--toggle` command, if you added one in GNOME or KDE settings.
+- The shared runtime and Electron base app, if nothing else uses them:
+  ```sh
+  flatpak uninstall --user --unused
+  ```
+
+If you ran the app from source with `npm start`, its profile lives at `~/.config/Lumo Desktop/`
+and is not touched by any of the above; delete it by hand.
 
 ## Usage
 
@@ -192,9 +249,26 @@ See [SECURITY.md](SECURITY.md) for the full security model and how to report a v
 
 ## Updating
 
-Chromium is bundled with Electron and does not auto-update. To get Chromium security fixes,
-install each new release of Lumo Desktop as it's published. If you build from source, bump the
-`electron` version in `package.json` and rebuild.
+The app has no auto-update mechanism and is not on Flathub, so updates are not offered by
+`flatpak update` or your software centre. New versions are published on this project's
+[GitHub Releases page](https://github.com/DaveTheGameDev/lumo-desktop/releases); use the
+**Watch → Custom → Releases** option on the repository to get notified about them.
+
+To update, download the new `LumoDesktop.flatpak` and install it the same way as the first time
+(see [Install](#install)):
+
+```sh
+flatpak install --user LumoDesktop.flatpak
+```
+
+This replaces the installed version in place. Your login, settings, and any `flatpak override`
+you set are kept. Quit the app first (Ctrl+Q, or from the tray icon) so the new version is used
+on the next launch.
+
+Updating matters for security: the app bundles Electron, which bundles Chromium, and neither is
+updated by anything other than a new release of Lumo Desktop. If you build from source, bump the
+`electron` version in `package.json` and rebuild with `scripts/build-flatpak.sh` to pick up
+Chromium fixes yourself.
 
 ## Troubleshooting / FAQ
 
