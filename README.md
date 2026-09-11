@@ -11,7 +11,16 @@ An unofficial Linux desktop wrapper around [Proton's Lumo web app](https://lumo.
 > recognisable next to the web app, and it remains Proton AG's property. If Proton asks, this
 > project will rename and change its icon.
 
-![Lumo Desktop running on GNOME, showing Lumo's start page in its own window](docs/screenshot.png)
+![Lumo Desktop running on GNOME, showing Lumo's start page with the chat sidebar open](docs/screenshot-sidebar.png)
+
+<details>
+<summary>More screenshots</summary>
+
+![A conversation with Lumo inside the app](docs/screenshot-chat.png)
+
+![Proton's sign-in page, loaded unmodified inside the app](docs/screenshot-signin.png)
+
+</details>
 
 ## Contents
 
