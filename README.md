@@ -11,7 +11,7 @@ An unofficial Linux desktop wrapper around [Proton's Lumo web app](https://lumo.
 > recognisable next to the web app, and it remains Proton AG's property. If Proton asks, this
 > project will rename and change its icon.
 
-<!-- TODO: add docs/screenshot.png and reference it here -->
+![Lumo Desktop running on GNOME, showing Lumo's start page in its own window](docs/screenshot.png)
 
 ## Contents
 
@@ -77,11 +77,20 @@ flatpak remote-add --if-not-exists flathub https://dl.flathub.org/repo/flathub.f
 
 If your desktop has a software installer that handles Flatpak (GNOME Software on Fedora and
 Ubuntu, Discover on KDE, and others), open the downloaded `LumoDesktop.flatpak` with it, for
-example by double-clicking the file, and press **Install**.
+example by clicking it in your browser's downloads list or double-clicking the file:
 
-If the installer offers a choice between a plain install and one marked **User**, pick **User**.
-It installs for your account only, needs no administrator password, and matches everything else
-in this README.
+![Browser downloads list showing LumoDesktop.flatpak](docs/install-download.png)
+
+If asked which app to open it with, pick your software centre (here "Software Install", which is
+GNOME Software):
+
+!["Open With" dialog offering Software Install and Discover](docs/install-open-with.png)
+
+Then press **Install**. If the installer offers a choice between a plain install and one marked
+**User**, pick **User**. It installs for your account only, needs no administrator password, and
+matches everything else in this README.
+
+![GNOME Software showing Lumo Desktop with the Install button and the User option selected](docs/install-software.png)
 
 #### From the command line
 
